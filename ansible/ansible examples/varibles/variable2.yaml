@@ -1,0 +1,25 @@
+---
+- name: This playbook is used to demonstrate variables
+  hosts: all
+  become: yes
+  vars_files:
+    - /myvariable/var.yaml
+
+  tasks:
+    - name: "This task is used to create directory {{ mydir }}"
+      file:
+        path: "{{ mydir }}"
+        state: directory
+    
+    - name: "This task is used to copy from {{ myfile }} to {{ mydir }}"
+      copy:
+        src: "{{ myfile }}"
+        dest: "{{ mydir }}"
+        mode: 0777
+
+    - name: "This task is use for installing the {{ mypkg }} packages"
+      apt:
+        name: "{{ mypkg }}"
+        update_cache: yes
+        state: present
+        

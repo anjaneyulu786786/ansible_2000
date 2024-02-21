@@ -1,0 +1,13 @@
+---
+- name: This is used to demonstrate hash loop
+  hosts: all
+  become: yes
+  tasks:
+    - copy:
+        src: "{{ item.a }}"
+        dest: "{{ item.b }}"
+      with_items:
+        - { a: '/etc/passwd', b: '/tmp' }
+        - { a: '/etc/group', b: '/mnt' }
+        - { a: '/etc/fstab', b: '/opt' }
+        

@@ -1,0 +1,9 @@
+---
+- name: singleline format
+  hosts: all
+  become: yes
+  tasks:
+    - copy: src=/etc/group dest=/tmp owner=wipro mode=777
+    - file: path=/tmp/aws state=directory
+    - apt: name=apache2 state:latest
+    - service: name=apache2 state=restarted

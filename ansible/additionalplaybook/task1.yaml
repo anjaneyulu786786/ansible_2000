@@ -1,0 +1,13 @@
+---
+- name: This is to copy the /etc/passwd to /tmp
+  copy:
+        src: /etc/passwd
+        dest: /tmp
+        owner: ravi
+        group: ravi
+        mode: 0777
+
+- name: This is to create aws directory
+  file:
+        path: /tmp/rajesh
+        state: directory

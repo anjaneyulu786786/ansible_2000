@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    myfile:
+      - /etc/passwd
+      - /etc/group
+      - /etc/fstab
+  tasks:
+    - copy:
+        src: "{{ myfile[0] }}"
+        dest: "{{ item[1] }}"
+      with_nested:
+        - /tmp
+        - /opt
+        - /mnt

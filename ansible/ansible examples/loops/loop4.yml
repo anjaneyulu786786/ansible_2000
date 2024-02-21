@@ -1,0 +1,30 @@
+---
+- name: "This is to demonstrate loops"
+  hosts: all
+  become: yes
+  vars:
+    mydir:
+      - /tmp/mycloud-1
+      - /tmp/mycloud-2
+      - /tmp/mycloud-3
+    myfile:
+      - /etc/passwd
+      
+  tasks:
+    - copy:
+        src: "{{ item }}"
+        dest: /tmp
+      with_items:
+        - "{{ myfile }}"
+
+    - file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ mydir }}"
+
+    - copy:
+        src: /etc/passwd
+        dest: "{{ item }}"
+      with_items:
+        - "{{ mydir }}"

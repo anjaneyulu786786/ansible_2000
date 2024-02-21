@@ -1,0 +1,29 @@
+---
+- name: "This is to demonstrate loops"
+  hosts: all
+  become: yes
+  tasks:
+    - copy:
+        src: "{{ item }}"
+        dest: /tmp/
+      with_items:
+        - /etc/passwd
+        - /etc/shadow
+        - /etc/fstab
+        - /etc/group
+
+    - file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - /tmp/mycloud-1
+        - /tmp/mycloud-2
+        - /tmp/mycloud-3
+
+    - copy:
+        src: /etc/passwd
+        dest: "{{ item }}"
+      with_items:
+        - /tmp/mycloud-1
+        - /tmp/mycloud-2
+        - /tmp/mycloud-3

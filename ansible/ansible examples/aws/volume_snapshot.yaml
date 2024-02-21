@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - ec2_snapshot:
+        aws_access_key: AKIAZ5PLBQBRQMMBJM5R
+        aws_secret_key: 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
+        volume_id: vol-09775e2a6d46bbf12
+        region: us-west-2
+        description: This is my First EBS Volume Snapshot

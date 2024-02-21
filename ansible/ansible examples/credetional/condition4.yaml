@@ -1,0 +1,9 @@
+---
+- name: This is to demonstrate installing apache only on ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - apt:
+        name: apache2
+        state: present
+      when: ansible_distribution_major_version == 18 and ansible_os_family == "Debian"

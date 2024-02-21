@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - ec2_vol:
+        aws_access_key: AKIAZ5PLBQBRQMMBJM5R
+        aws_secret_key: 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
+        instance: i-0e72706d11fc4a041
+        id: vol-0957bfc1575960df9
+        device_name: /dev/sdb1
+        zone: us-west-2a
+        region: us-west-2
+        delete_on_termination: yes

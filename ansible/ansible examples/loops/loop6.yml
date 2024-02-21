@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - apt:
+        name:
+          - apache2
+          - wget
+          - tree
+          - nfs-kernel-server
+        state: present

@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - copy:
+        src: "{{ item }}"
+        dest: "{{ item }}"
+      with_items:
+        - /etc/passwd
+        - /tmp
+        

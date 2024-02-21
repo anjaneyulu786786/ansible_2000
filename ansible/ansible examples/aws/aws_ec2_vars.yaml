@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  become: yes
+  vars:
+    keypair: ansible-key
+    security_group: Ansible-SG
+    image: ami-08e2d37b6a0129927
+    region: us-west-2
+    type: t2.micro
+  tasks:
+    - ec2:
+        aws_access_key: AKIAZ5PLBQBRQMMBJM5R
+        aws_secret_key: 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
+        key_name: "{{ keypair }}"
+        group: "{{ security_group }}"
+        instance_type: "{{ type }}"
+        image: "{{ image }}"
+        wait: yes
+        wait_timeout: 500
+        count: 3
+        instance_tags:
+          Name: Prod-Instance
+        monitoring: yes
+        region: "{{ region }}"
+        vpc_subnet_id: subnet-0f4ef045
+        assign_public_ip: yes

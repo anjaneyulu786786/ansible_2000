@@ -1,0 +1,13 @@
+---
+- name: "This is to demonstrate loops"
+  hosts: localhost
+  become: yes
+  tasks:
+    - copy:
+        src: "{{ item }}"
+        dest: /tmp/
+      with_items:
+        - /etc/passwd
+        - /etc/shadow
+        - /etc/fstab
+        - /etc/group

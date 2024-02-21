@@ -1,0 +1,30 @@
+---
+- name: This is to demonstrate the use of ignore_errors
+  hosts: all
+  become: yes
+  tasks:
+    - name: this to copy the /etc/group into /tmp directory
+      copy:
+        src: /etc/group123
+        dest: /tmp
+      ignore_errors: yes
+
+    - name:  create naresh directory under the /tmp
+      file:
+        path: /tmp/naresh
+        state: directory
+      ignore_errors: yes
+ 
+    - name: install the apache package
+      apt:
+        name: apache2
+        state: present
+      ignore_errors: yes
+   
+    - name: starting the apache service
+      service:
+        name: apache2
+        enabled: yes
+        state: started
+      ignore_errors: yes
+    

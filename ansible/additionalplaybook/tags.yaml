@@ -1,0 +1,29 @@
+---
+- name: This is to demonstrate the use of tags in playbook
+  hosts: all
+  become: yes
+  tasks:
+    - name: this to copy the /etc/passwd into /tmp directory
+      copy:
+        src: /etc/passwd
+        dest: /tmp
+      tags: dev-team
+
+    - name:  create rajesh directory under the /tmp
+      file:
+        path: /tmp/rajesh
+        state: directory
+      tags: test-team
+
+    - name: install the apache package
+      apt:
+        name: apache2
+        state: present
+      tags: prod-team
+
+    - name: starting the apache service
+      service:
+        name: apache2
+        enabled: yes
+        state: started
+      tags: admin-team

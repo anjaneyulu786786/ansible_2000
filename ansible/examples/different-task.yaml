@@ -1,0 +1,27 @@
+---
+- name: This is my web server group serve
+  hosts: web
+  tasks:
+    - name: This task going to copy /etc/passwd to /tmp directory
+      copy:
+        src: /etc/passwd
+        dest: /tmp
+        owner: wipro
+        group: tcs
+        mode: 777
+    
+    - name: This task going to create the directory /tmp/ansible
+      file:
+        path: /tmp/ansible
+        state: directory
+
+- name: This is my app server group server
+  hosts: app
+  tasks:
+    - apt:
+        name: nfs-utils
+        state: present
+
+    - service:
+        name: nfs-server
+        state: restarted

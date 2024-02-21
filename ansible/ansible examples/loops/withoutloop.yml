@@ -1,0 +1,16 @@
+---
+- name: "This is to demonstrate without loops"
+  hosts: all
+  become: yes
+  tasks:
+    - copy:
+        src: /etc/passwd
+        dest: /tmp
+
+    - copy:
+        src: /etc/group
+        dest: /tmp
+
+    - copy:
+       src: /etc/fstab
+       dest: /tmp

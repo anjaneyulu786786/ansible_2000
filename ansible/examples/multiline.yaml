@@ -1,0 +1,19 @@
+---
+- name: multiline format
+  hosts: all
+  become: yes
+  tasks:
+    - copy: src=/etc/shadow 
+            dest=/tmp
+            owner=wipro
+            group=tcs
+            mode=777
+
+    - file: path=/tmp/azure
+            state=direcotry
+
+    - apt: name=nfs-utils
+           state=present
+
+    - service: name=nfs-server
+               state=started

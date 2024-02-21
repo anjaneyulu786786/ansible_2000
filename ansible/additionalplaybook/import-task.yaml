@@ -1,0 +1,12 @@
+---
+- name: This is my first playbook yaml file
+  hosts: web-server
+  become: yes
+  tasks:
+    - import_tasks: task1.yaml
+
+- name: This is my second task running in app-server group
+  hosts: app-server
+  become: yes
+  tasks: 
+    - import_tasks: task2.yaml

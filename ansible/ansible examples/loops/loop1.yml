@@ -1,0 +1,9 @@
+---
+- name: "This is to demonstrate loops"
+  hosts: all
+  become: yes
+  tasks:
+    - copy:
+        src: /etc/passwd,/etc/group,/etc/fstab
+        dest: /tmp
+ 

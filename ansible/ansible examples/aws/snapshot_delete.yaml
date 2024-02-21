@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - local_action:
+        aws_access_key: AKIAZ5PLBQBRQMMBJM5R
+        aws_secret_key: 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
+        module: ec2_snapshot
+        snapshot_id: snap-0d39e84f0aafa6950
+        state: absent
+        region: us-west-2

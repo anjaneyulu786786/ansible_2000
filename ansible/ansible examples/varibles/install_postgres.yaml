@@ -1,0 +1,6 @@
+---
+- name: install postgres in ubuntu
+  hosts: postgres-db
+  roles:
+    - role: buluma.postgres
+      become: yes

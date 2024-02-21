@@ -1,0 +1,27 @@
+---
+- name: This task is used to install apache server in ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: "This task is to install apache2"
+      apt:
+        name: apache2
+        update_cache: yes
+        state: present
+
+    - name: "This task use to copy the sourcecode/ to /var/www/html"
+      copy:
+        src: /root/sourcecode/
+        dest: /var/www/html
+
+    - name: "Enable port 8080"
+      lineinfile:
+        path: /etc/apache2/ports.conf
+        regexp: '^Listen '
+        insertafter: '^#Listen '
+        line: Listen 8080
+
+    - name: "apache2 service restart"
+      service:
+        name: apache2
+        state: restarted 

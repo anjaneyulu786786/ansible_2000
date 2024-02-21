@@ -1,0 +1,7 @@
+---
+- name: install mysql in ubuntu
+  hosts: mysql-db
+  roles:
+    - role: geerlingguy.mysql
+      become: yes
+      

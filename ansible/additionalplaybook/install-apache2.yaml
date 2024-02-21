@@ -1,0 +1,29 @@
+---
+- name: this playbook is used to install the apache package
+  hosts: all
+  become: yes
+  tasks:
+    - name: Installing the apache2 package
+      ansible.builtin.apt:
+        name: apache2
+        update_cache: yes
+        state: present
+    
+    - name: coping the sourcecode from /sourcecode to /var/www/html
+      copy:
+        src: /sourcecode/
+        dest: /var/www/html/
+
+    - name: Start apache2 service
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+    
+    - name: enable port 8080
+      lineinfile:
+        path: /etc/apache2/ports.conf
+        regexp: '^Listen '
+        insertafter: '^#Listen '
+        line: Listen 8080
+

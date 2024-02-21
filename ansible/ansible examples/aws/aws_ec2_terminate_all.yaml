@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  become: yes
+  vars:
+    ids:
+      - i-0aabfe6bff7134152
+      - i-05bfbeae0f5f91f5a
+      - i-00564cddac769944a
+      - i-04f0bdd334c1f8756
+      - i-05e7b8392d7780989
+      - i-0558da62dd7841be4
+  tasks:
+    - local_action:
+        aws_access_key: AKIAZ5PLBQBRQMMBJM5R
+        aws_secret_key: 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
+        module: ec2
+        state: absent
+        instance_ids: "{{ ids }}"
+        region: us-west-2

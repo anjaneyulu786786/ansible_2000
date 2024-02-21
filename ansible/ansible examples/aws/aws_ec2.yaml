@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - ec2:
+        aws_access_key: AKIA2GJRFIIXSVC2VIIB
+        aws_secret_key: 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
+        key_name: 3132
+        instance_type: t2.micro
+        image: ami-06c4532923d4ba1ec
+        wait: yes
+        wait_timeout: 500
+        count: 1
+        instance_tags:
+          Name: Prod-Instance
+        monitoring: yes
+        region: us-east-2 
+        
+        vpc_subnet_id: subnet-0c6da223d77430368
+        assign_public_ip: yes

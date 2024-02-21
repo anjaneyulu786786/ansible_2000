@@ -1,0 +1,11 @@
+---
+- name: This is to demonstrate installing apache only on ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - apt:
+        name: apache2
+        state: present
+      when: ansible_distribution == "CentOS"
+      when: ansible_distribution_major_version == 17
+      when: ansible_kernel == "5.4.0-1080-aws"

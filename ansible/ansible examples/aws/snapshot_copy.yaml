@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - ec2_snapshot_copy:
+        aws_access_key: AKIAZ5PLBQBRQMMBJM5R
+        aws_secret_key: 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
+        source_region: us-west-2
+        region: us-east-1
+        source_snapshot_id: snap-0d39e84f0aafa6950
+        tags:
+          Name: North-Virgina
+        encrypted: yes
